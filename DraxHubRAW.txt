@@ -1,0 +1,346 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local DraxV = "v0.23"
+
+if game.PlaceId == 60654525 then
+   game.StarterGui:SetCore("SendNotification",  {
+   Title = "Game Detected";
+   Text = "The Legendary Swords RPG \n Loading Script...";
+   Icon = "";
+   Duration = 5;
+})
+    wait(4.2)
+
+    game.StarterGui:SetCore("SendNotification",  {
+    Title = "Drax Hub "..DraxV;
+    Text = "Credits: Drax Hub";
+    Icon = "";
+    Duration = 5;
+})
+
+    local TLSRWindow = Library.CreateLib("The Legendary Swords RPG - Drax Hub "..DraxV, "Ocean")
+
+    local CheatsTab = TLSRWindow:NewTab("Cheats")
+    local MiscSection = CheatsTab:NewSection("Misc")
+
+    MiscSection:NewButton("Get best Sword", "Gives you the best Sword ingame", function()
+        local event = game:GetService("Players").LocalPlayer.RemoteFunctions.SwordShopSystem
+        event:FireServer("Buy", 0, "The Devil's Blade")
+    end)
+    MiscSection:NewButton("Max Rebirths", "Will set your rebirths to max", function()
+        local event = game:GetService("Players").LocalPlayer.RemoteFunctions.RebirthFunction
+        event:FireServer(25)
+    end)
+    MiscSection:NewButton("Infinite Rebirths", "Will set your rebirths to infinite", function()
+        local event = game:GetService("Players").LocalPlayer.RemoteFunctions.RebirthFunction
+        event:FireServer(math.huge)
+    end)
+
+    local GoldSection = CheatsTab:NewSection("Gold Mods")
+    GoldSection:NewTextBox("Enter ammount", "Gives you the entered amount in gold", function(v)
+        local event = game:GetService("Players").LocalPlayer.RemoteFunctions.SwordShopSystem
+        event:FireServer("Buy", -v, "Steel")
+    end)
+    GoldSection:NewButton("Infinite Gold", "Gives you infinite gold", function()
+        local event = game:GetService("Players").LocalPlayer.RemoteFunctions.SwordShopSystem
+        event:FireServer("Buy", -math.huge, "Steel")
+    end)
+
+    local AutomaticSection = CheatsTab:NewSection("Automatic")
+    AutomaticSection:NewToggle("Auto Upgrade Health", "Auto upgrades health", function(v)
+        getgenv().autoHealth = v
+        while true do
+        if not getgenv().autoHealth then return end
+        local Event = game:GetService("Players").LocalPlayer.RemoteFunctions.UpgradeFunction
+        Event:FireServer("Health", "One")
+        wait()
+        end
+    end)
+    AutomaticSection:NewToggle("Auto Upgrade Damage", "Auto upgrades damage", function(v)
+        getgenv().autoDamage = v
+        while true do
+        if not getgenv().autoDamage then return end
+        local Event = game:GetService("Players").LocalPlayer.RemoteFunctions.UpgradeFunction
+        Event:FireServer("Damage", "One")
+        wait()
+        end
+    end)
+    AutomaticSection:NewToggle("Auto Upgrade Defense", "Auto upgrades defense", function(v)
+        getgenv().autoDefense = v
+        while true do
+        if not getgenv().autoDefense then return end
+        local Event = game:GetService("Players").LocalPlayer.RemoteFunctions.UpgradeFunction
+        Event:FireServer("Defense", "One")
+        wait()
+        end
+    end)
+    AutomaticSection:NewToggle("Auto Upgrade Loot", "Auto upgrades loot", function(v)
+        getgenv().autoLoot = v
+        while true do
+        if not getgenv().autoLoot then return end
+        local Event = game:GetService("Players").LocalPlayer.RemoteFunctions.UpgradeFunction
+        Event:FireServer("Loot", "One")
+        wait()
+        end
+    end)
+    local OtherSection = CheatsTab:NewSection("Other")
+    OtherSection:NewButton("Wear Devil Outfit (Bypass Gamepass)", "Lets you wear the Devil outfit without paying", function()
+	game:GetService("Players").LocalPlayer.RemoteFunctions.ArmorSystem:FireServer("Devil")
+    end)
+    OtherSection:NewButton("Wear Dark Dragon Outfit (Bypass Gamepass)", "Lets you wear the Dark Dragon outfit without paying", function()
+	game:GetService("Players").LocalPlayer.RemoteFunctions.ArmorSystem:FireServer("Dark Dragon")
+    end)
+
+    local SettingsTab = TLSRWindow:NewTab("Settings")
+    local SettingsSection = SettingsTab:NewSection("Settings")
+    SettingsSection:NewKeybind("Toggle UI", "Toggles the UI with a customizable keybind", Enum.KeyCode.E, function()
+        Library:ToggleUI()
+    end)
+
+    local Credits = TLSRWindow:NewTab("Credits")
+    local CreditsSection = Credits:NewSection("Credits")
+    CreditsSection:NewLabel("Scripter: Drax")
+    CreditsSection:NewLabel("UI Library: Kavo UI by xHeptc")
+	CreditsSection:NewLabel("Discord: Drax#5934")
+    CreditsSection:NewLabel("Thanks for using DraxHub!")
+
+elseif game.PlaceId == 155615604 then
+   game.StarterGui:SetCore("SendNotification",  {
+   Title = "Game Detected";
+   Text = "Prison Life \n Loading Script...";
+   Icon = "";
+   Duration = 5;
+})
+    wait(4.2)
+
+    game.StarterGui:SetCore("SendNotification",  {
+    Title = "Drax Hub "..DraxV;
+    Text = "Credits: Drax Hub";
+    Icon = "";
+    Duration = 5;
+})
+
+    local PrisonLifeWindow = Library.CreateLib("Prison Life - Drax Hub "..DraxV, "Ocean")
+
+    local Cheats = PrisonLifeWindow:NewTab("Cheats")
+
+    local MainSection = Cheats:NewSection("Misc")
+    MainSection:NewDropdown("Give Gun", "Gives the player a gun", {"All guns", "M9", "Remington 870", "AK-47"}, function(v)
+        if v == "All guns" then
+            local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver["M9"].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
+            wait(0.1)
+            local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
+            wait(0.1)
+            local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver["AK-47"].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
+        else
+            local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+            local Event = game:GetService("Workspace").Remote.ItemHandler
+            Event:InvokeServer(A_1)
+        end
+    end)
+    MainSection:NewDropdown("Change Team", "Changes the team of a player", {"Guards", "Inmates", "Criminals", "Neutral"}, function(v)
+        if v == "Guards" then
+			if game.Players.LocalPlayer.Neutral == true then
+				game.Players.LocalPlayer.Neutral = false
+			end
+            local A_1 = "Bright blue"
+            local Event = game:GetService("Workspace").Remote.TeamEvent
+            Event:FireServer(A_1)
+        elseif v == "Inmates" then
+			if game.Players.LocalPlayer.Neutral == true then
+				game.Players.LocalPlayer.Neutral = false
+			end
+            local A_1 = "Bright orange"
+            local Event = game:GetService("Workspace").Remote.TeamEvent
+            Event:FireServer(A_1)
+        elseif v == "Criminals" then
+	    if game.Players.LocalPlayer.Neutral == true then
+	        game.Players.LocalPlayer.Neutral = false
+	    end
+            local crimSpawn = game.Workspace:FindFirstChild("Criminals Spawn").SpawnLocation
+	    local cPos = crimSpawn.CFrame
+
+	    local plr = game.Players.LocalPlayer.Character
+
+	    crimSpawn.Transparency = 1
+	    crimSpawn.CanCollide = false
+	    crimSpawn.Anchored = true
+	    crimSpawn.CFrame = plr.HumanoidRootPart.CFrame
+	    wait(.1)
+	    crimSpawn.CFrame = cPos
+	    crimSpawn.Transparency = 0
+		elseif v == "Neutral" then
+			game.Players.LocalPlayer.Neutral = true
+        end
+    end)
+    MainSection:NewDropdown("Teleport", "Teleports the player to a specific location", {"Criminal base", "Cells", "Armory", "Yard", "Cafeteria"}, function(v)
+        if v == "Criminal base" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-920.510803, 95, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+        elseif v == "Cells" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.9021, 99.9899902, 2441.50781, -0.999999881, 4.35584475e-08, 0.000456653041, 4.35639791e-08, 1, 1.21073294e-08, -0.000456653041, 1.21272219e-08, -0.999999881)
+        elseif v == "Armory" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(836.108704, 99.9900055, 2263.19482, -0.998605967, 1.63674798e-08, 0.0527833626, 1.66583973e-08, 1, 5.07158715e-09, -0.0527833626, 5.94380367e-09, -0.998605967)
+        elseif v == "Yard" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(794.123352, 98.1899414, 2545.17163, 0.99984771, -1.57808078e-08, 0.0174533967, 1.58372213e-08, 1, -3.09399018e-09, -0.0174533967, 3.36993233e-09, 0.99984771)
+        elseif v == "Cafeteria" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(878.576965, 99.9899597, 2288.48193, -0.00912811235, -2.6547621e-08, -0.999958217, -2.32218889e-09, 1, -2.65275286e-08, 0.999958217, 2.07994622e-09, -0.00912811235)
+        end
+    end)
+    MainSection:NewButton("Rejoin Server", "Rejoins the server", function()
+        local tpservice = game:GetService("TeleportService")
+        local plr = game.Players.LocalPlayer
+        tpservice:Teleport(game.PlaceId, plr)
+    end)
+    MainSection:NewButton("Serverhop", "Takes you to a different server", function()
+	local servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"))
+	spawn(function()
+            while wait(1) do
+                for i,v in pairs(servers.data) do
+                    if v.playing ~= v.maxPlayers then
+                        wait(1.5)
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, v.id)
+                    end
+                end
+            end
+        end)
+    end)
+    MainSection:NewToggle("One Punch", "One punch players to death", function(v)
+    if v then
+        mainRemotes = game.ReplicatedStorage
+        meleeRemote = mainRemotes['meleeEvent']
+        mouse = game.Players.LocalPlayer:GetMouse()
+        _G.punching = false
+        _G.cooldown = false
+         
+        function punch()
+        _G.cooldown = true
+        local part = Instance.new("Part", game.Players.LocalPlayer.Character)
+        part.Transparency = 1
+        part.Size = Vector3.new(5, 2, 3)
+        part.CanCollide = false
+        local w1 = Instance.new("Weld", part)
+        w1.Part0 = game.Players.LocalPlayer.Character.Torso
+        w1.Part1 = part
+        w1.C1 = CFrame.new(0,0,2)
+        part.Touched:connect(function(hit)
+        if game.Players:FindFirstChild(hit.Parent.Name) then
+        local plr = game.Players:FindFirstChild(hit.Parent.Name)
+        if plr.Name ~= game.Players.LocalPlayer.Name then
+        part:Destroy()
+         
+        for i = 1,100 do
+        meleeRemote:FireServer(plr)
+        end
+        end
+        end
+        end)
+         
+        wait(1)
+        _G.cooldown = false
+        part:Destroy()
+        end
+         
+        mouse.KeyDown:connect(function(key)
+        if _G.cooldown == false then
+        if key:lower() == "f" then
+
+        punch()
+        end
+        end
+        end)
+    else
+        _G.cooldown = true
+    end
+end)
+    MainSection:NewButton("No doors (CLIENT)", "Removes all doors (only for you)", function()
+        game.Workspace.Doors:Destroy()
+        game.Workspace.Prison_Cellblock.doors:Destroy()
+        game.Workspace.Prison_Fences.Prison_Gate:Destroy()
+    end)
+
+    MainSection:NewButton("Infinite Stamina", "You basically have infinite stamina", function()
+        local plr = game:GetService("Players").LocalPlayer
+        for i,v in next, getgc() do
+            if type(v) == "function" and getfenv(v).script and getfenv(v).script == plr.Character.ClientInputHandler then
+                for i2,v2 in next, debug.getupvalues(v) do
+                    if type(v2) == "number" then debug.setupvalue(v, i2, math.huge)
+                    end
+                end
+            end
+        end
+    end)
+
+    MainSection:NewButton("Arrest all", "Arrest all Players", function()
+        local plr = game.Players.LocalPlayer
+        local cpos = plr.Character.HumanoidRootPart.CFrame
+        for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+            if v.Name ~= plr.Name then
+            local i = 10
+            repeat
+            wait()
+            i = i-1
+            game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+            plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+            until i == 0
+            end
+        end
+    end)
+
+    local PlayerSection = Cheats:NewSection("Player")
+    
+    PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+    PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end)
+
+    local OtherScriptsPrisonLifeTab = PrisonLifeWindow:NewTab("Other Scripts")
+    local OtherScriptsPrisonLifeSection = OtherScriptsPrisonLifeTab:NewSection("Other Scripts")
+    OtherScriptsPrisonLifeSection:NewLabel("Some scripts may be outdated!")
+    OtherScriptsPrisonLifeSection:NewButton("Prevail X", "Loads Prevail X in", function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/mHfK0Xk4", true))()
+    end)
+    OtherScriptsPrisonLifeSection:NewButton("Infinite Yield", "Loads Infinite Yield in", function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+    end)
+    OtherScriptsPrisonLifeSection:NewButton("Prison Life OP Admin", "Loads an OP Admin script in", function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/XTheMasterX/Scripts/Main/PrisonLife'),true))()
+    end)
+    OtherScriptsPrisonLifeSection:NewButton("Super OP Admin (OUTDATED)", "It's just completely overpowered", function()
+        --loadstring(game:HttpGet('https://pastebin.com/raw/dt7JbaH5'))()
+    end)
+    OtherScriptsPrisonLifeSection:NewButton("Delete Tool (CLIENT)", "Gives you a delete tool (just visible for you)", function()
+        a = Instance.new("HopperBin") 
+    a.BinType = 4 
+    a.Parent = game.Players.LocalPlayer.Backpack
+    end)
+    
+
+    local Settings = PrisonLifeWindow:NewTab("Settings")
+    local SettingsSection = Settings:NewSection("Settings")
+    SettingsSection:NewKeybind("Toggle UI", "Toggles the UI visibility with a customizable keybind", Enum.KeyCode.E, function()
+        Library:ToggleUI()
+end)
+
+    local Credits = PrisonLifeWindow:NewTab("Credits")
+    local CreditsSection = Credits:NewSection("Credits")
+    CreditsSection:NewLabel("Scripter: Drax")
+    CreditsSection:NewLabel("UI Library: Kavo UI by xHeptc")
+    CreditsSection:NewLabel("Other Scripts Tab: Different Scripters")
+    CreditsSection:NewLabel("Discord: Drax#5934")
+    CreditsSection:NewLabel("Thanks for using DraxHub!")
+
+else
+    game.StarterGui:SetCore("SendNotification",  {
+    Title = "Drax Hub";
+    Text = "Unfortunately the game is not supported :(";
+    Icon = "";
+    Duration = 5;
+})
+end
